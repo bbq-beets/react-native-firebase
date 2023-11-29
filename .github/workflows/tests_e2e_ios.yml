@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ 'macos-13', 'macos-12' ]
+        os: [ 'macos-13', 'macos-12', 'macos-latest-xlarge' ]
     steps:
 
 #      # https://bitrise.io/blog/post/xcode-15-performance-regressions
