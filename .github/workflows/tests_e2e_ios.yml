@@ -178,6 +178,11 @@ jobs:
         timeout-minutes: 100
         run: yarn tests:ios:test-cover
 
+      - name: Do we have simulators created ?
+        if: always()
+        run: |
+            xcrun simctl list
+
       - name: log aggregate
         if: always()
         run: |
@@ -196,12 +201,7 @@ jobs:
         with:
           name: log-${{ matrix.os }}
           path: /var/log
-
-      - name: Do we have simulators created ?
-        if: always()
-        run: |
-            xcrun simctl list
-        
+       
       - uses: actions/cache/save@v3
         name: Yarn Cache Save
         if: "${{ github.ref == 'refs/heads/main' }}"
