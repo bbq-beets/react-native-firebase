@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ 'macos-13', 'macos-12', 'macos-latest-xlarge' ]
+        os: [ 'macos-latest-xlarge' ]
     steps:
 
 #      # https://bitrise.io/blog/post/xcode-15-performance-regressions
@@ -197,6 +197,11 @@ jobs:
           name: log-${{ matrix.os }}
           path: /var/log
 
+      - name: Do we have simulators created ?
+        if: always()
+        run: |
+            xcrun simctl list
+        
       - uses: actions/cache/save@v3
         name: Yarn Cache Save
         if: "${{ github.ref == 'refs/heads/main' }}"
