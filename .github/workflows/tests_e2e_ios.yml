@@ -183,6 +183,23 @@ jobs:
         run: |
             xcrun simctl list
 
+      - name: open sim window
+        if: always()
+        run: |
+            open /Applications/Xcode_15.0.1.app/Contents/Developer/Applications/Simulator.app/
+
+      - name: create screenshot
+        if: always()
+        run: |
+            screencapture test.jpg
+
+      - name: Upload screenshot
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: test.jpg
+          path: test.jpg
+          
       - name: log aggregate
         if: always()
         run: |
